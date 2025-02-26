@@ -1,4 +1,6 @@
 # lagou_edu_front_mobile
+vue front practice demo
+
 
 ## Project setup
 ```
