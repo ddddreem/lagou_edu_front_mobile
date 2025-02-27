@@ -1,22 +1,61 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
+  // 首页（选课页）
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    name: 'course',
+    component: () => import(/* webpackChunkName: 'course' */'@/views/course/index')
   },
+  // 登录页
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/login',
+    name: 'login',
+    component: () => import(/* webpackChunkName: 'login' */'@/views/login/index')
+  },
+  // 学习页
+  {
+    path: '/learn',
+    name: 'learn',
+    component: () => import(/* webpackChunkName: 'learn' */'@/views/learn/index'),
+    meta: { requiresAuth: true }
+  },
+  // 用户页
+  {
+    path: '/user',
+    name: 'user',
+    component: () => import(/* webpackChunkName: 'user' */'@/views/user/index'),
+    meta: { requiresAuth: true }
+  },
+  // // 课程详情页
+  // {
+  //   path: '/course-info/:courseId/',
+  //   name: 'course-info',
+  //   component: () => import(/* webpackChunkName: 'course-info' */'@/views/course-info/index'),
+  //   props: true
+  // },
+  // // 视频页
+  // {
+  //   path: '/lesson-video/:lessonId/',
+  //   name: 'lesson-video',
+  //   component: () => import(/* webpackChunkName: 'lesson-video' */'@/views/course-info/video'),
+  //   props: true
+  // },
+  // // 支付页
+  // {
+  //   path: '/pay/:courseId/',
+  //   name: 'pay',
+  //   component: () => import(/* webpackChunkName: 'pay' */'@/views/pay/index'),
+  //   meta: { requiresAuth: true },
+  //   props: true
+  // },
+  {
+    path: '*',
+    name: 'error-page',
+    component: () => import(/* webpackChunkName: 'error-page' */'@/views/error-page/index')
   }
 ]
 
