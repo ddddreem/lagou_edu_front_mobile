@@ -1,6 +1,6 @@
 import axios from 'axios'
 import store from '@/store'
-import qs from 'querystring'
+import qs from 'qs'
 
 const request = axios.create({
   baseURL: 'http://edufront.lagou.com'
